@@ -3,7 +3,7 @@ using UnityEngine;
 public class InitiateGridScript : MonoBehaviour
 {
     //Hex types
-    public GameObject basicHexPrefab, baseHexPrefab;
+    public GameObject basicHexPrefab;
 
     //Position in world space
     Vector3 gridTransform = new Vector3(0, 0, 0);
@@ -13,9 +13,6 @@ public class InitiateGridScript : MonoBehaviour
 
     //Counters for place in grid
     int rowCounter = 0, colCounter = 0;
-
-    //Counts which base is being made, likely can be repclaced
-    int playerCount = 0;
 
     //Fetches grid stats
     private void Awake()
@@ -76,7 +73,7 @@ public class InitiateGridScript : MonoBehaviour
             newCol--;
 
         //Finds and creates correct hex prefab
-        GameObject newHex = AssignHexType();
+        GameObject newHex = Instantiate(basicHexPrefab, gridTransform, transform.rotation);
 
         //Makes child of Gridmanager, names prefab
         newHex.transform.SetParent(GameObject.Find("GridManager").transform, false);
@@ -87,25 +84,5 @@ public class InitiateGridScript : MonoBehaviour
 
         //Adds to grid in GridManagerScript
         GetComponent<GridManagerScript>().AddHex(newCol, colCounter, newHex);
-    }
-
-    //Sets prefab according to position in array
-    GameObject AssignHexType()
-    {
-        GameObject temp;
-
-        //If on top or bottom edge and in the middle column creates a base
-        if (colCounter == gridWidth / 2 && (rowCounter == 1 || rowCounter == gridHeight - 1))
-        {
-            temp = Instantiate(baseHexPrefab, gridTransform, transform.rotation);
-            temp.GetComponent<BaseHexScript>().player = playerCount;
-            playerCount++;
-        }
-        else
-        {
-            temp = Instantiate(basicHexPrefab, gridTransform, transform.rotation);
-        }
-
-        return temp;
     }
 }

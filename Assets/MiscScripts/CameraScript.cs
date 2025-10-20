@@ -84,23 +84,4 @@ public class CameraScript : MonoBehaviour
 
         camObj.orthographicSize = zoom;
     }
-
-    //Rotates camera to activePlayer and moves to activePlayer's base
-    public void UpdatePlayerCam(int player)
-    {
-        Vector3 newCamPos = gameManager.GetComponent<GridManagerScript>().GetBaseHex(player).GetComponent<HexScript>().transform.position;
-        Vector3 newCamRotation = camObj.transform.eulerAngles;
-
-        newCamPos.z = -10;
-
-        if (player == 0)
-            newCamRotation.z = 0;
-        else
-            newCamRotation.z = 180;
-
-        cameraPos = newCamPos;
-
-        this.transform.position = cameraPos;
-        transform.eulerAngles = newCamRotation;
-    }
 }

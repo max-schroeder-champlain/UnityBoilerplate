@@ -76,43 +76,7 @@ public class HexScript : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (gameManager.GetComponent<GameManagerScript>().CheckPhase(GameManagerScript.PhaseType.SetUp))
-                HandleSetUp();
-            else
-                HandleCombat();
+            
         }
-    }
-
-    //Overridden for each type's set up phase
-    public virtual void HandleSetUp()
-    {
-        if (!isOccupied && inReach)
-        {
-            if (gameManager.GetComponent<GameManagerScript>().activePlayer == 0 && ID.x < 10)//ten chosen arbitrarily, could be improved
-            {
-                gameManager.GetComponent<UnitManagerScript>().AddUnit(transform, ID);
-                gameManager.GetComponent<GameManagerScript>().HandleSetUp();
-            }
-            else if (gameManager.GetComponent<GameManagerScript>().activePlayer == 1 && ID.x > 10)
-            {
-                gameManager.GetComponent<UnitManagerScript>().AddUnit(transform, ID);
-                gameManager.GetComponent<GameManagerScript>().HandleSetUp();
-            }
-        }
-    }
-
-    //Overridden for each type's build phase
-    public virtual void HandleBuild()
-    {
-        /*if (inReach && gameManager.GetComponent<UnitManagerScript>().newUnits.Count > 0)
-        {
-            gameManager.GetComponent<UnitManagerScript>().AddUnit(transform, ID);
-        }*/
-    }
-
-    //Overridden for each type's attack phase
-    public virtual void HandleCombat()
-    {
-
     }
 }
