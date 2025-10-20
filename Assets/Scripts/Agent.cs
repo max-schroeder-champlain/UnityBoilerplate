@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Agent : MonoBehaviour
+public abstract class Agent : MonoBehaviour
 {
-    var path = new Queue.<Vector2>();
-    public virtual void GeneratePath();
-    public virtual void CheckPath(); //Information Reuse
+    public List<Vector2> path = new List<Vector2>();
+    public abstract void GeneratePath();
+    public abstract void CheckPath(); //Information Reuse
 
 
 }
