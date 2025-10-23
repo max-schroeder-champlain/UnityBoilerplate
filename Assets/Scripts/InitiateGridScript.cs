@@ -27,7 +27,7 @@ public class InitiateGridScript : MonoBehaviour
     }
 
     //Creates hexs for grid and calls InstantiateHex to assign variables, assigns adjaceny arrays to each
-    void InstantiateGrid()
+    public void InstantiateGrid()
     {
         while(rowCounter < gridHeight)
         {

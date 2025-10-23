@@ -142,4 +142,17 @@ public class GridManagerScript : MonoBehaviour
 
         grid[(int)centre.x, (int)centre.y].GetComponent<HexScript>().adjacent[counter] = tempPos;
     }
+    public void Clear()
+    {
+        for(int i = 0; i < gridWidth; i++)
+        {
+            for (int j = 0; j < gridHeight; j++)
+            {
+               Destroy(grid[i,j]);
+               grid[i,j] = null;
+            }
+            
+        }
+
+    }
 }

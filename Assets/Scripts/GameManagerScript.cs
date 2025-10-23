@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript Instance;
-
+    public GameObject HexPrefab;
     public GameObject camera;
 
     //Grid parameters
@@ -59,5 +59,13 @@ public class GameManagerScript : MonoBehaviour
         {
             Instance = null;
         }
+    }
+    public void Reset()
+    {
+        InitiateGridScript grid = GetComponent<InitiateGridScript>();
+        GridManagerScript gridManager = GetComponent<GridManagerScript>();
+        gridManager.Clear();
+        Destroy(grid);
+        gameObject.AddComponent<InitiateGridScript>().basicHexPrefab = HexPrefab;
     }
 }
