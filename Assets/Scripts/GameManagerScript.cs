@@ -1,11 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript Instance;
     public GameObject HexPrefab;
     public GameObject camera;
-
+    public Slider slider;
+    public TMP_Text sliderText;
     //Grid parameters
     public int gridWidth, gridHeight;
 
@@ -15,15 +18,7 @@ public class GameManagerScript : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        slider.value = gridWidth;
     }
 
     //Called to switch who starts new build/attack phase
@@ -64,8 +59,16 @@ public class GameManagerScript : MonoBehaviour
     {
         InitiateGridScript grid = GetComponent<InitiateGridScript>();
         GridManagerScript gridManager = GetComponent<GridManagerScript>();
-        gridManager.Clear();
+        gridManager.Clear(gridWidth, gridHeight);
         Destroy(grid);
         gameObject.AddComponent<InitiateGridScript>().basicHexPrefab = HexPrefab;
+    }
+
+    public void ChangeSides()
+    {
+        gridWidth = (int)slider.value;
+        gridHeight = (int)slider.value;
+        sliderText.text = $"{gridWidth}";
+        Reset();
     }
 }
