@@ -16,7 +16,7 @@ public class GridManagerScript : MonoBehaviour
     public List<GameObject> reach = new List<GameObject>();
 
     //Hex types
-    public enum HexType { Basic, BaseCamp, Mana }
+    public enum HexType { Basic }
 
     //Sets grid paramaters
     private void Awake()
