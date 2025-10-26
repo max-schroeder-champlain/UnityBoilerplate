@@ -9,9 +9,15 @@ public class GameManagerScript : MonoBehaviour
     public GameObject camera;
     //Grid parameters
     public int gridWidth, gridHeight;
+    //Cool Grid stuff :)
     public Vector2 currentTargetPosition;
     public Vector2 agentPosition;
-
+    public bool UseReuse = false;
+    public bool UseHierachy = false;
+    public Slider StepSlider;
+    public TMP_Text StepText;
+    public float StepTime = 1f;
+    public bool isRunning;
     //Keeps track of which player's turn it is
     public enum PhaseType { SetUp, Combat, Win }
     public PhaseType phase = PhaseType.SetUp;
@@ -19,8 +25,11 @@ public class GameManagerScript : MonoBehaviour
     public bool settingTarget;
     public bool settingAgent;
 
+
     void Awake()
     {
+        StepSlider.value = StepTime;
+        StepText.text = StepTime.ToString("F2");
     }
 
     //Called to switch who starts new build/attack phase
@@ -64,5 +73,36 @@ public class GameManagerScript : MonoBehaviour
         gridManager.Clear(gridWidth, gridHeight);
         Destroy(grid);
         gameObject.AddComponent<InitiateGridScript>().basicHexPrefab = HexPrefab;
+    }
+
+    public void SetReuse()
+    {
+        UseReuse = !UseReuse;
+    }
+
+    public void SetHierarch()
+    {
+        UseHierachy = !UseHierachy;
+    }
+    public void SetStepTime()
+    {
+        StepTime = StepSlider.value;
+        StepText.text = StepTime.ToString("F2");
+    }
+    
+    public void Run(GameObject button)
+    {
+        TMP_Text text = button.GetComponent<TMP_Text>();
+        if (isRunning)
+        {
+            text.text = "Run";
+            isRunning = false;
+        }
+        else
+        {
+            text.text = "Stop";
+            isRunning = true;
+            FindObjectOfType<Agent>().StartMove();
+        }
     }
 }

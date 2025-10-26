@@ -8,7 +8,6 @@ public class Agent : MonoBehaviour
 {
     private GridManagerScript gridManagerScript;
     private List<Vector2> path = new List<Vector2>();
-    private List<Vector2> lastPath = new List<Vector2>();
     Queue<Vector2> frontier;
     Dictionary<Vector2, bool> visited = new Dictionary<Vector2, bool>();
     List<Vector2> frontierSet;
@@ -82,9 +81,12 @@ public class Agent : MonoBehaviour
         Debug.Log(testLog);
     }
 
-    public void MoveAgent()
+    private IEnumerator MoveAgent()
     {
-        GeneratePath();
+        yield return new WaitForSeconds(GameManagerScript.Instance.StepTime);
+        if(GameManagerScript.Instance.UseReuse && CheckPath()) { }
+        else
+            GeneratePath();
         foreach(Vector2 vector2 in path)
         {
             Debug.Log(vector2);
@@ -93,16 +95,25 @@ public class Agent : MonoBehaviour
         {
             gridManagerScript.MoveAgent(path.Last());
             path.Remove(path.Last());
+            gridManagerScript.grid[(int)path.Last().x, (int)path.Last().y].GetComponent<HexScript>().SetIsInPath(false);
         }
-        
-
+        if(GameManagerScript.Instance.isRunning)
+            StartCoroutine(MoveAgent());
+    }
+    public void StartMove()
+    {
+        StartCoroutine(MoveAgent());
     }
     //Information Reuse
     public bool CheckPath()
     {
+        if (path.Count == 0) return false;
         foreach(var point in path)
         {
-            //if a point is bad, return false
+            if(!gridManagerScript.grid[(int)point.x, (int)point.y].GetComponent<HexScript>().isPassable)
+            {
+                return false;
+            }
         }
         return true;
     }
