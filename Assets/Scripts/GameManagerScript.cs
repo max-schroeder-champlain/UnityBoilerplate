@@ -13,6 +13,7 @@ public class GameManagerScript : MonoBehaviour
     public int gridWidth, gridHeight;
     public List<Vector2> currentTargetPosition;
     public Vector2 agentPosition;
+    public Vector2 agentStartPosition;
     public bool UseReuse = false;
     public bool UseHierachy = false;
     public Slider StepSlider;
@@ -75,7 +76,7 @@ public class GameManagerScript : MonoBehaviour
         GridManagerScript gridManager = GetComponent<GridManagerScript>();
         gridManager.Clear(gridWidth, gridHeight);
         Destroy(grid);
-        gameObject.AddComponent<InitiateGridScript>().basicHexPrefab = HexPrefab;
+        gameObject.AddComponent<InitiateGridScript>().basicHexPrefab = HexPrefab;;
     }
 
     public void SetReuse()
@@ -92,7 +93,11 @@ public class GameManagerScript : MonoBehaviour
         StepTime = StepSlider.value;
         StepText.text = StepTime.ToString("F2");
     }
-    
+    public void SetAgent()
+    {
+        if (SettingTarget) return;
+        SettingAgent = !SettingAgent;
+    }
     public void Run(GameObject button)
     {
         TMP_Text text = button.GetComponent<TMP_Text>();

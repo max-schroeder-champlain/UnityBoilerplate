@@ -45,9 +45,7 @@ public class GridManagerScript : MonoBehaviour
     {
         yield return null;
 
-        agent = Instantiate(Agent);
-        agent.transform.position = grid[0, 0].transform.position;
-        GameManagerScript.Instance.agentPosition = new Vector2(0, 0);
+        CreateAgent(0, 0);
 
         for (int i = 0; i < numOfTargets; i++)
         {
@@ -213,9 +211,20 @@ public class GridManagerScript : MonoBehaviour
             } 
         }
         grid = new GameObject[gridWidth, gridHeight];
-
+        Destroy(agent);
     }
-
+    public void CreateAgent(int x, int y)
+    {
+        if (agent != null)
+        {
+            Destroy(agent);
+        }
+        agent = Instantiate(Agent);
+        agent.transform.position = grid[x, y].transform.position;
+        GameManagerScript.Instance.agentPosition = new Vector2(x, y);
+        GameManagerScript.Instance.agentStartPosition = new Vector2(x, y);
+        GameManagerScript.Instance.SettingAgent = false;
+    }
     public bool CheckHex(int x, int y)
     {
         if (y >= gridHeight) return false;

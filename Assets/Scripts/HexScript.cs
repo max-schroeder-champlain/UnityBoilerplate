@@ -82,6 +82,11 @@ public class HexScript : MonoBehaviour
             if (isPassable) isPassable = false;
             else isPassable = true;
 
+            if (GameManagerScript.Instance.SettingAgent)
+            {
+                FindObjectOfType<GridManagerScript>().CreateAgent((int)ID.x, (int)ID.y);
+                return;
+            }
             SetHexColour();
         }
     }

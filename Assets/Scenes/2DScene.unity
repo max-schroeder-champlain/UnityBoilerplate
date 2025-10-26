@@ -1000,7 +1000,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 376995216}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2109844961}
+        m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
+        m_MethodName: SetAgent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &376995216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2946,6 +2958,7 @@ MonoBehaviour:
   gridHeight: 15
   currentTargetPosition: []
   agentPosition: {x: 0, y: 0}
+  agentStartPosition: {x: 0, y: 0}
   UseReuse: 0
   UseHierachy: 0
   StepSlider: {fileID: 216047375}
