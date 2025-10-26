@@ -77,12 +77,12 @@ public class InitiateGridScript : MonoBehaviour
 
         //Makes child of Gridmanager, names prefab
         newHex.transform.SetParent(GameObject.Find("GridManager").transform, false);
-        newHex.name = newCol + "," + colCounter;
+        newHex.name = colCounter + "," + newCol;
 
         //Sets ID
-        newHex.GetComponent<HexScript>().AssignVars(newCol, colCounter);
+        newHex.GetComponent<HexScript>().AssignVars(colCounter, newCol);
 
         //Adds to grid in GridManagerScript
-        GetComponent<GridManagerScript>().AddHex(newCol, colCounter, newHex);
+        GetComponent<GridManagerScript>().AddHex(colCounter, newCol, newHex);
     }
 }
