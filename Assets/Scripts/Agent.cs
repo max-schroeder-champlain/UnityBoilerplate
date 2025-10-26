@@ -122,21 +122,23 @@ public class Agent : MonoBehaviour
                 Vector2 temp = new Vector2(current.x + x, current.y + y);
                 int tempX = x;
                 int tempY = y;
-                if (current.y % 2 == 0)
+                if (current.x % 2 == 0)
                 {
-                    tempX++;
+                    tempY++;
                 }
                 if (temp.x < 0 || temp.x >= gridManagerScript.gridWidth) continue;
 
                 int oddModifier = 0;
                 if (temp.x % 2 != 0)
+                {
                     oddModifier++;
+                }
 
                 if (temp.y < 0 || temp.y >= gridManagerScript.gridHeight - oddModifier) continue;
                 //if can't move there: return
                 if (y != 0)
                 {
-                    if (tempX == 0 || tempX == 1) { }
+                    if (tempY == 0 || tempY == 1) { }
                     else continue;
                 }
                 if (visited.ContainsKey(temp)) continue;
