@@ -179,7 +179,9 @@ public class GridManagerScript : MonoBehaviour
 
     public bool CheckHex(int x, int y)
     {
-        Debug.Log(grid[x, y].GetComponent<HexScript>() != null);
+        if (y >= gridHeight) return false;
+        if (grid[x, y].GetComponent<HexScript>() == null) return false;
+
         return grid[x, y].GetComponent<HexScript>().isPassable;
     }
 

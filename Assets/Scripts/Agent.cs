@@ -126,8 +126,13 @@ public class Agent : MonoBehaviour
                 {
                     tempX++;
                 }
-                if (tempX < 0 || tempX >= gridManagerScript.gridWidth) continue;
-                if (tempY < 0 || tempY >= gridManagerScript.gridHeight) continue;
+                if (temp.x < 0 || temp.x >= gridManagerScript.gridWidth) continue;
+
+                int oddModifier = 0;
+                if (temp.x % 2 != 0)
+                    oddModifier++;
+
+                if (temp.y < 0 || temp.y >= gridManagerScript.gridHeight - oddModifier) continue;
                 //if can't move there: return
                 if (y != 0)
                 {
@@ -136,7 +141,8 @@ public class Agent : MonoBehaviour
                 }
                 if (visited.ContainsKey(temp)) continue;
                 if (frontierSet.Contains(temp)) continue;
-                if (!gridManagerScript.CheckHex(tempX, tempY)) continue;
+                Debug.Log(temp.x + " " + temp.y);
+                if (!gridManagerScript.CheckHex((int)temp.x, (int)temp.y)) continue;
                 neighbors.Add(temp);
             }
         }
