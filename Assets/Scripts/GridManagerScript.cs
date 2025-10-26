@@ -177,6 +177,11 @@ public class GridManagerScript : MonoBehaviour
 
     }
 
+    public bool CheckHex(int x, int y)
+    {
+        return grid[x, y].GetComponent<HexScript>().isPassable;
+    }
+
     public void MoveAgent(Vector2 newPos)
     {
         agent.transform.position = grid[(int)newPos.x, (int)newPos.y].transform.position;

@@ -123,6 +123,7 @@ public class Agent : MonoBehaviour
                 }
                 if (visited.ContainsKey(temp)) continue;
                 if (frontierSet.Contains(temp)) continue;
+                if (gridManagerScript.CheckHex(tempX, (int)temp.y)) continue;
                 neighbors.Add(temp);
             }
         }
