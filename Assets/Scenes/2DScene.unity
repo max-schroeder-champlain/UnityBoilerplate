@@ -2944,7 +2944,7 @@ MonoBehaviour:
   camera: {fileID: 742021119}
   gridWidth: 15
   gridHeight: 15
-  currentTargetPosition: {x: 0, y: 0}
+  currentTargetPosition: []
   agentPosition: {x: 0, y: 0}
   UseReuse: 0
   UseHierachy: 0
@@ -2987,6 +2987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Agent: {fileID: 6396290701982818648, guid: 80072fa95cc01c046a3e10618c6cf825, type: 3}
   Target: {fileID: 7579221347402826961, guid: 09db29736f5450f4c9b73543246c13b8, type: 3}
+  numOfTargets: 3
   gridHeight: 0
   gridWidth: 0
   reach: []
