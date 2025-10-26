@@ -94,8 +94,9 @@ public class Agent : MonoBehaviour
         if(path.Count != 0)
         {
             gridManagerScript.MoveAgent(path.Last());
-            path.Remove(path.Last());
             gridManagerScript.grid[(int)path.Last().x, (int)path.Last().y].GetComponent<HexScript>().SetIsInPath(false);
+            path.Remove(path.Last());
+           
         }
         if(GameManagerScript.Instance.isRunning)
             StartCoroutine(MoveAgent());
