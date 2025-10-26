@@ -21,7 +21,7 @@ public class Agent : MonoBehaviour
         int testLog = 0;
         path = new List<Vector2>();
         visited = new Dictionary<Vector2, bool>();
-        Vector2 targetPosition = GameManagerScript.Instance.currentTargetPosition;
+        Vector2 targetPosition = GameManagerScript.Instance.currentTargetPosition[0]; // Find based on weights
         Vector2 agentPos = GameManagerScript.Instance.agentPosition;
         bool foundTarget = false;
         Vector2 targetNeighbor;

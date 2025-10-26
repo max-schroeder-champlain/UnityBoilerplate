@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 
@@ -9,7 +11,7 @@ public class GameManagerScript : MonoBehaviour
     public GameObject camera;
     //Grid parameters
     public int gridWidth, gridHeight;
-    public Vector2 currentTargetPosition;
+    public List<Vector2> currentTargetPosition;
     public Vector2 agentPosition;
 
     //Keeps track of which player's turn it is

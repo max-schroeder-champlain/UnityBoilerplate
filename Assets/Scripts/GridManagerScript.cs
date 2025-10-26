@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -11,7 +12,8 @@ public class GridManagerScript : MonoBehaviour
     public GameObject Agent;
     public GameObject Target;
     private GameObject agent;
-    private GameObject target;
+    private List<GameObject> target = new List<GameObject>();
+    public int numOfTargets;
     //Grid stats
     public int gridHeight, gridWidth;
     int xEvenUpLimit, yRightLimit;
@@ -33,6 +35,7 @@ public class GridManagerScript : MonoBehaviour
 
         grid = new GameObject[gridHeight, gridWidth];
     }
+
     private void Start()
     {
         StartCoroutine(DelayedStart());
@@ -41,13 +44,49 @@ public class GridManagerScript : MonoBehaviour
     private IEnumerator DelayedStart()
     {
         yield return null;
+
         agent = Instantiate(Agent);
         agent.transform.position = grid[0, 0].transform.position;
         GameManagerScript.Instance.agentPosition = new Vector2(0, 0);
-        target = Instantiate(Target);
-        target.transform.position = grid[10,10].transform.position;
-        GameManagerScript.Instance.currentTargetPosition = new Vector2(10, 10);
+
+        for (int i = 0; i < numOfTargets; i++)
+        {
+            Vector2 newTargetPos = isHexTargetable();
+
+            target.Add(Instantiate(Target));
+            target.Last().transform.position = grid[(int)newTargetPos.x, (int)newTargetPos.y].transform.position;
+            GameManagerScript.Instance.currentTargetPosition.Add(new Vector2((int)newTargetPos.x, (int)newTargetPos.y));
+        }
     }
+
+    private Vector2 isHexTargetable()
+    {
+        bool findingHex = true;
+        int x = 0, y = 0;
+        Vector2 newTargetPos = new Vector2();
+
+        while(findingHex)
+        {
+            x = Random.Range(0, gridWidth);
+            y = Random.Range(0, gridHeight);
+            newTargetPos = new Vector2(x, y);
+
+            if (x == 0 && y == 0) { continue; }
+            if (x % 2 == 0 && y >= gridHeight - 1) { continue; }
+            if (target.Count != 0)
+            {
+                for (int i = 0; i < target.Count; i++)
+                {
+                    if (newTargetPos == GameManagerScript.Instance.currentTargetPosition[i]) { continue; }
+                }
+                findingHex = false;
+            }
+            findingHex = false;
+        }
+
+        return newTargetPos;
+    }
+
     //Adds hex to grid
     public void AddHex(int xPos, int yPos, GameObject newHex)
     {
