@@ -18,6 +18,9 @@ public class Agent : MonoBehaviour
     }
     public void GeneratePath()
     {
+        int testLog = 0;
+        path = new List<Vector2>();
+        visited = new Dictionary<Vector2, bool>();
         Vector2 targetPosition = GameManagerScript.Instance.currentTargetPosition;
         Vector2 agentPos = GameManagerScript.Instance.agentPosition;
         bool foundTarget = false;
@@ -70,10 +73,13 @@ public class Agent : MonoBehaviour
                 {
                     gridManagerScript.grid[(int)path.Last().x, (int)path.Last().y].GetComponent<HexScript>().SetIsInPath(false);
                     path.Remove(agentPos);
+                    Debug.Log(testLog);
                     return;
                 }
             }
+            testLog++;
         }
+        Debug.Log(testLog);
     }
 
     public void MoveAgent()
@@ -83,8 +89,12 @@ public class Agent : MonoBehaviour
         {
             Debug.Log(vector2);
         }
-        gridManagerScript.MoveAgent(path.Last());
-        path.Remove(path.Last());
+        if(path.Count != 0)
+        {
+            gridManagerScript.MoveAgent(path.Last());
+            path.Remove(path.Last());
+        }
+        
 
     }
     //Information Reuse
