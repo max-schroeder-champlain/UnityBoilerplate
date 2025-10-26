@@ -900,7 +900,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 610382921}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2109844967}
+        m_TargetAssemblyTypeName: Agent, Assembly-CSharp
+        m_MethodName: MoveAgent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &610382921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,7 +1029,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742021119}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 7.5, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1560,6 +1572,8 @@ GameObject:
   - component: {fileID: 2109844961}
   - component: {fileID: 2109844964}
   - component: {fileID: 2109844963}
+  - component: {fileID: 2109844966}
+  - component: {fileID: 2109844967}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1583,7 +1597,11 @@ MonoBehaviour:
   camera: {fileID: 742021119}
   gridWidth: 15
   gridHeight: 15
+  currentTargetPosition: {x: 0, y: 0}
+  agentPosition: {x: 0, y: 0}
   phase: 0
+  settingTarget: 0
+  settingAgent: 0
 --- !u!4 &2109844962
 Transform:
   m_ObjectHideFlags: 0
@@ -1612,6 +1630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae31b59195eabee4eb3c5c93a6ce9002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Agent: {fileID: 6396290701982818648, guid: 80072fa95cc01c046a3e10618c6cf825, type: 3}
+  Target: {fileID: 7579221347402826961, guid: 09db29736f5450f4c9b73543246c13b8, type: 3}
+  gridHeight: 0
+  gridWidth: 0
   reach: []
 --- !u!114 &2109844964
 MonoBehaviour:
@@ -1626,3 +1648,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicHexPrefab: {fileID: 4569221856691177203, guid: 9233c44d995c8ff469c29ba4ace08e87, type: 3}
+  Agent: {fileID: 6396290701982818648, guid: 80072fa95cc01c046a3e10618c6cf825, type: 3}
+  Target: {fileID: 7579221347402826961, guid: 09db29736f5450f4c9b73543246c13b8, type: 3}
+--- !u!114 &2109844966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109844960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1e8b511d3f588488fb7c1bd5f611f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2109844967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109844960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26404893fe7735544891e432ace18e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
