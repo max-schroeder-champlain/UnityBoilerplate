@@ -9,10 +9,15 @@ public class GameManagerScript : MonoBehaviour
     public GameObject camera;
     //Grid parameters
     public int gridWidth, gridHeight;
+    public Vector2 currentTargetPosition;
+    public Vector2 agentPosition;
 
     //Keeps track of which player's turn it is
     public enum PhaseType { SetUp, Combat, Win }
     public PhaseType phase = PhaseType.SetUp;
+
+    public bool settingTarget;
+    public bool settingAgent;
 
     void Awake()
     {

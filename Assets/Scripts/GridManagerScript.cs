@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
@@ -7,9 +8,12 @@ public class GridManagerScript : MonoBehaviour
 {
     //Grid
     public GameObject[,] grid;
-
+    public GameObject Agent;
+    public GameObject Target;
+    private GameObject agent;
+    private GameObject target;
     //Grid stats
-    int gridHeight, gridWidth;
+    public int gridHeight, gridWidth;
     int xEvenUpLimit, yRightLimit;
 
     //Holds tiles in range
@@ -29,7 +33,21 @@ public class GridManagerScript : MonoBehaviour
 
         grid = new GameObject[gridHeight, gridWidth];
     }
+    private void Start()
+    {
+        StartCoroutine(DelayedStart());
+    }
 
+    private IEnumerator DelayedStart()
+    {
+        yield return null;
+        agent = Instantiate(Agent);
+        agent.transform.position = grid[0, 0].transform.position;
+        GameManagerScript.Instance.agentPosition = new Vector2(0, 0);
+        target = Instantiate(Target);
+        target.transform.position = grid[10,10].transform.position;
+        GameManagerScript.Instance.currentTargetPosition = new Vector2(10, 10);
+    }
     //Adds hex to grid
     public void AddHex(int xPos, int yPos, GameObject newHex)
     {
@@ -157,5 +175,10 @@ public class GridManagerScript : MonoBehaviour
         }
         grid = new GameObject[gridWidth, gridHeight];
 
+    }
+
+    public void MoveAgent(Vector2 newPos)
+    {
+        agent.transform.position = grid[(int)newPos.x, (int)newPos.y].transform.position;
     }
 }

@@ -4,7 +4,8 @@ public class InitiateGridScript : MonoBehaviour
 {
     //Hex types
     public GameObject basicHexPrefab;
-
+    public GameObject Agent;
+    public GameObject Target;
     //Position in world space
     Vector3 gridTransform = new Vector3(0, 0, 0);
 
@@ -60,7 +61,6 @@ public class InitiateGridScript : MonoBehaviour
 
             rowCounter++;
         }
-
         GetComponent<GridManagerScript>().MakeAdjacencyArrays();
     }
 
