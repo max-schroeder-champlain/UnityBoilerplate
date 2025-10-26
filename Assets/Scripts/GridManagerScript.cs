@@ -186,5 +186,6 @@ public class GridManagerScript : MonoBehaviour
     public void MoveAgent(Vector2 newPos)
     {
         agent.transform.position = grid[(int)newPos.x, (int)newPos.y].transform.position;
+        GameManagerScript.Instance.agentPosition = newPos;
     }
 }
