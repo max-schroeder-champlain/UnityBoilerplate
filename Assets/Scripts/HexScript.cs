@@ -10,7 +10,7 @@ public class HexScript : MonoBehaviour
     public Vector2 ID;
     public GridManagerScript.HexType type;
     public bool inReach = false, isOccupied = false;
-    public bool isPassable = true;
+    public bool isPassable = true, isInPath;
     public Vector2[] adjacent = new Vector2[6];
     public int[] distance = new int[6];
 
@@ -61,8 +61,9 @@ public class HexScript : MonoBehaviour
     //Parent version of function, children set color
     public virtual void SetHexColour()
     {
-        if (isPassable) GetComponent<SpriteRenderer>().color = Color.white;
-        else GetComponent<SpriteRenderer>().color = Color.black;
+        if (!isPassable) GetComponent<SpriteRenderer>().color = Color.black;
+        else if (isInPath) GetComponent<SpriteRenderer>().color = Color.red;
+        else GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void OnMouseOver()
@@ -83,5 +84,12 @@ public class HexScript : MonoBehaviour
 
             SetHexColour();
         }
+    }
+
+    public void SetIsInPath(bool inPath)
+    {
+        isInPath = inPath;
+
+        SetHexColour();
     }
 }
