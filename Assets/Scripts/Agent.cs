@@ -56,6 +56,7 @@ public class Agent : MonoBehaviour
                     foundTarget = true;
                     targetNeighbor = neighbor;
                     path.Add(neighbor);
+                    gridManagerScript.grid[(int)path.Last().x, (int)path.Last().y].GetComponent<HexScript>().SetIsInPath(true);
                 }
             }
             if (foundTarget)
@@ -63,9 +64,11 @@ public class Agent : MonoBehaviour
                 while(path.Last() != agentPos)
                 {
                     path.Add(cameFrom[path.Last()]);
+                    gridManagerScript.grid[(int)path.Last().x, (int)path.Last().y].GetComponent<HexScript>().SetIsInPath(true);
                 }
                 if(path.Last() == agentPos)
                 {
+                    gridManagerScript.grid[(int)path.Last().x, (int)path.Last().y].GetComponent<HexScript>().SetIsInPath(false);
                     path.Remove(agentPos);
                     return;
                 }
@@ -109,21 +112,21 @@ public class Agent : MonoBehaviour
                 Vector2 temp = new Vector2(current.x + x, current.y + y);
                 int tempX = x;
                 int tempY = y;
-                if (tempX < 0 || tempX >= gridManagerScript.gridWidth) continue;
-                if (tempY < 0 || tempY >= gridManagerScript.gridHeight) continue;
                 if (current.y % 2 == 0)
                 {
                     tempX++;
                 }
+                if (tempX < 0 || tempX >= gridManagerScript.gridWidth) continue;
+                if (tempY < 0 || tempY >= gridManagerScript.gridHeight) continue;
                 //if can't move there: return
-                if(y != 0)
+                if (y != 0)
                 {
                     if (tempX == 0 || tempX == 1) { }
                     else continue;
                 }
                 if (visited.ContainsKey(temp)) continue;
                 if (frontierSet.Contains(temp)) continue;
-                if (!gridManagerScript.CheckHex(tempX, tempY)) continue;
+				if (!gridManagerScript.CheckHex(tempX, tempY)) continue
                 neighbors.Add(temp);
             }
         }
