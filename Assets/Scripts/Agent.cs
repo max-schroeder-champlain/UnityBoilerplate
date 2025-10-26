@@ -11,12 +11,14 @@ public class Agent : MonoBehaviour
     Queue<Vector2> frontier;
     Dictionary<Vector2, bool> visited = new Dictionary<Vector2, bool>();
     List<Vector2> frontierSet;
+    public Coroutine move;
     private void Awake()
     {
         gridManagerScript = FindObjectOfType<GridManagerScript>();
     }
     public void GeneratePath()
     {
+        gridManagerScript.ClearInPath();
         int testLog = 0;
         path = new List<Vector2>();
         visited = new Dictionary<Vector2, bool>();
@@ -29,6 +31,12 @@ public class Agent : MonoBehaviour
             Debug.Log("At Target");
             return;
         }
+        if (!gridManagerScript.CheckHex((int)targetPosition.x, (int)targetPosition.y))
+        {
+            Debug.Log("No Valid Path");
+            return;
+        }
+
         Dictionary<Vector2, Vector2> cameFrom = new Dictionary<Vector2, Vector2>();
         Dictionary<Vector2, int> costSoFar = new Dictionary<Vector2, int>();
         frontier = new Queue<Vector2>();
@@ -94,16 +102,20 @@ public class Agent : MonoBehaviour
         if(path.Count != 0)
         {
             gridManagerScript.MoveAgent(path.Last());
-            gridManagerScript.grid[(int)path.Last().x, (int)path.Last().y].GetComponent<HexScript>().SetIsInPath(false);
             path.Remove(path.Last());
            
         }
         if(GameManagerScript.Instance.isRunning)
-            StartCoroutine(MoveAgent());
+            move = StartCoroutine(MoveAgent());
     }
     public void StartMove()
     {
-        StartCoroutine(MoveAgent());
+        move = StartCoroutine(MoveAgent());
+    }
+    public void StopMove()
+    {
+        if(move != null)
+            StopCoroutine(move);
     }
     //Information Reuse
     public bool CheckPath()

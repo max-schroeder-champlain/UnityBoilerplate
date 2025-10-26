@@ -22,8 +22,10 @@ public class GameManagerScript : MonoBehaviour
     public enum PhaseType { SetUp, Combat, Win }
     public PhaseType phase = PhaseType.SetUp;
 
-    public bool settingTarget;
-    public bool settingAgent;
+    public bool SettingTarget;
+    public bool SettingAgent;
+    public TMP_Text TargetText;
+    public TMP_Text AgentText;
 
 
     void Awake()
@@ -97,12 +99,32 @@ public class GameManagerScript : MonoBehaviour
         {
             text.text = "Run";
             isRunning = false;
+            FindObjectOfType<Agent>().StopMove();
         }
         else
         {
             text.text = "Stop";
             isRunning = true;
             FindObjectOfType<Agent>().StartMove();
+        }
+    }
+    private void Update()
+    {
+        if (!SettingTarget)
+        {
+            TargetText.text = "Set Target";
+        }
+        else
+        {
+            TargetText.text = "Setting Target";
+        }
+        if (!SettingAgent)
+        {
+            AgentText.text = "Set Agent";
+        }
+        else
+        {
+            AgentText.text = "Setting Agent";
         }
     }
 }

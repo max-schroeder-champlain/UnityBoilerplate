@@ -190,4 +190,15 @@ public class GridManagerScript : MonoBehaviour
         agent.transform.position = grid[(int)newPos.x, (int)newPos.y].transform.position;
         GameManagerScript.Instance.agentPosition = newPos;
     }
+    public void ClearInPath()
+    {
+        for (int i = 0; i < gridWidth; i++)
+        {
+            for (int j = 0; j < gridHeight; j++)
+            {
+                if (grid[i, j] != null)
+                    grid[i, j].GetComponent<HexScript>().SetIsInPath(false);
+            }
+        }
+    }
 }

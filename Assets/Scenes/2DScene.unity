@@ -1123,13 +1123,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109844967}
-        m_TargetAssemblyTypeName: Agent, Assembly-CSharp
-        m_MethodName: StartMove
-        m_Mode: 1
+      - m_Target: {fileID: 2109844961}
+        m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
+        m_MethodName: Run
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2953,8 +2953,10 @@ MonoBehaviour:
   StepTime: 1
   isRunning: 0
   phase: 0
-  settingTarget: 0
-  settingAgent: 0
+  SettingTarget: 0
+  SettingAgent: 0
+  TargetText: {fileID: 965049457}
+  AgentText: {fileID: 291157736}
 --- !u!4 &2109844962
 Transform:
   m_ObjectHideFlags: 0
@@ -2962,7 +2964,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109844960}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
