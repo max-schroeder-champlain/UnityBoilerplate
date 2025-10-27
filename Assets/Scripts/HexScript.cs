@@ -66,12 +66,16 @@ public class HexScript : MonoBehaviour
         else GetComponent<SpriteRenderer>().color = Color.white;
     }
 
-    private void OnMouseOver()
+    /*private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
             ClickEvent();
         }
+    }*/
+    private void OnMouseDown()
+    {
+        ClickEvent();
     }
 
     //Parent version of function, children set use

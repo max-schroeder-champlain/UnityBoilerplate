@@ -80,7 +80,7 @@ public class CameraScript : MonoBehaviour
             zoom += zoomChange * Time.deltaTime * 10f;
         }
 
-        zoom = Mathf.Clamp(zoom, 1.5f, 5f);
+        zoom = Mathf.Clamp(zoom, 1.5f, 10f);
 
         camObj.orthographicSize = zoom;
     }

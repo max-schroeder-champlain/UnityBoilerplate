@@ -183,6 +183,7 @@ public class GridManagerScript : MonoBehaviour
         }
         target.Clear();
         GameManagerScript.Instance.currentTargetPosition.Clear();
+        
     }
     public void CreateAgent(int x, int y)
     {

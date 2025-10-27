@@ -190,5 +190,8 @@ public class Agent : MonoBehaviour
         }
         return neighbors;
     }
-
+    public void Reset()
+    {
+        currentTarget = 0;
+    }
 }

@@ -68,6 +68,7 @@ public class GameManagerScript : MonoBehaviour
         gridWidth = newGridWidth;
         gridHeight = newGridWidth;
         gameObject.AddComponent<InitiateGridScript>().basicHexPrefab = HexPrefab;
+        GetComponent<Agent>().Reset();
     }
 
     public void SetReuse()
