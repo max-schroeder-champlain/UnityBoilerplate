@@ -3521,8 +3521,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexPrefab: {fileID: 4569221856691177203, guid: 9233c44d995c8ff469c29ba4ace08e87, type: 3}
   camera: {fileID: 742021119}
-  gridWidth: 20
-  gridHeight: 20
+  gridWidth: 12
+  gridHeight: 12
   newGridWidth: 0
   newGridHeight: 0
   currentTargetPosition: []

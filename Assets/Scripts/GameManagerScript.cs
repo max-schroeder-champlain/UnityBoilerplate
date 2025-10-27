@@ -63,10 +63,10 @@ public class GameManagerScript : MonoBehaviour
     {
         InitiateGridScript grid = GetComponent<InitiateGridScript>();
         GridManagerScript gridManager = GetComponent<GridManagerScript>();
-        gridManager.Clear(gridWidth, gridHeight);
+        gridManager.Clear(newGridWidth, newGridWidth);
         Destroy(grid);
         gridWidth = newGridWidth;
-        gridHeight = newGridHeight;
+        gridHeight = newGridWidth;
         gameObject.AddComponent<InitiateGridScript>().basicHexPrefab = HexPrefab;
     }
 
