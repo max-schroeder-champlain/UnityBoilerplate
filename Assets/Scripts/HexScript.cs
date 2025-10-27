@@ -79,9 +79,6 @@ public class HexScript : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (isPassable) isPassable = false;
-            else isPassable = true;
-
             if (GameManagerScript.Instance.SettingAgent)
             {
                 FindObjectOfType<GridManagerScript>().CreateAgent((int)ID.x, (int)ID.y);
@@ -94,6 +91,8 @@ public class HexScript : MonoBehaviour
                 return;
             }
 
+            if (isPassable) isPassable = false;
+            else isPassable = true;
 
             SetHexColour();
         }
