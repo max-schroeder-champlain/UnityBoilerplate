@@ -90,7 +90,7 @@ public class HexScript : MonoBehaviour
 
             if (GameManagerScript.Instance.SettingTarget)
             {
-                FindObjectOfType<GridManagerScript>().CreateAgent((int)ID.x, (int)ID.y);
+                FindObjectOfType<GridManagerScript>().CreateTarget((int)ID.x, (int)ID.y);
                 return;
             }
 
