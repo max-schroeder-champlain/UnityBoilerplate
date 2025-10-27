@@ -80,6 +80,11 @@ public class GameManagerScript : MonoBehaviour
         if (SettingTarget) return;
         SettingAgent = !SettingAgent;
     }
+    public void SetTarget()
+    {
+        if (SettingAgent) return;
+        SettingTarget = !SettingTarget;
+    }
     public void Run(GameObject button)
     {
         TMP_Text text = button.GetComponent<TMP_Text>();

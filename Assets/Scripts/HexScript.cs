@@ -87,6 +87,14 @@ public class HexScript : MonoBehaviour
                 FindObjectOfType<GridManagerScript>().CreateAgent((int)ID.x, (int)ID.y);
                 return;
             }
+
+            if (GameManagerScript.Instance.SettingTarget)
+            {
+                FindObjectOfType<GridManagerScript>().CreateAgent((int)ID.x, (int)ID.y);
+                return;
+            }
+
+
             SetHexColour();
         }
     }

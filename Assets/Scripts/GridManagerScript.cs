@@ -46,18 +46,9 @@ public class GridManagerScript : MonoBehaviour
         yield return null;
 
         CreateAgent(0, 0);
-
-        for (int i = 0; i < numOfTargets; i++)
-        {
-            Vector2 newTargetPos = isHexTargetable();
-
-            target.Add(Instantiate(Target));
-            target.Last().transform.position = grid[(int)newTargetPos.x, (int)newTargetPos.y].transform.position;
-            GameManagerScript.Instance.currentTargetPosition.Add(new Vector2((int)newTargetPos.x, (int)newTargetPos.y));
-        }
     }
 
-    private Vector2 isHexTargetable()
+    /*private Vector2 isHexTargetable()
     {
         bool findingHex = true;
         int x = 0, y = 0;
@@ -83,7 +74,7 @@ public class GridManagerScript : MonoBehaviour
         }
 
         return newTargetPos;
-    }
+    }*/
 
     //Adds hex to grid
     public void AddHex(int xPos, int yPos, GameObject newHex)
@@ -231,6 +222,15 @@ public class GridManagerScript : MonoBehaviour
         GameManagerScript.Instance.agentStartPosition = new Vector2(x, y);
         GameManagerScript.Instance.SettingAgent = false;
     }
+
+    public void CreateTarget(int x, int y)
+    {
+        target.Add(Instantiate(Target));
+        target.Last().transform.position = grid[x, y].transform.position;
+        GameManagerScript.Instance.currentTargetPosition.Add(new Vector2(x, y));
+        GameManagerScript.Instance.SettingTarget = false;
+    }
+
     public bool CheckHex(int x, int y)
     {
         if (y >= gridHeight) return false;
