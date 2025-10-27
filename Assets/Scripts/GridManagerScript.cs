@@ -38,7 +38,6 @@ public class GridManagerScript : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(DelayedStart());
     }
 
     public void CreateGrid()
@@ -49,12 +48,6 @@ public class GridManagerScript : MonoBehaviour
         grid = new GameObject[gridHeight, gridWidth];
     }
 
-    private IEnumerator DelayedStart()
-    {
-        yield return null;
-
-        CreateAgent(0, 0);
-    }
 
     //Adds hex to grid
     public void AddHex(int xPos, int yPos, GameObject newHex)
