@@ -3521,8 +3521,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexPrefab: {fileID: 4569221856691177203, guid: 9233c44d995c8ff469c29ba4ace08e87, type: 3}
   camera: {fileID: 742021119}
-  gridWidth: 15
-  gridHeight: 15
+  gridWidth: 20
+  gridHeight: 20
+  newGridWidth: 0
+  newGridHeight: 0
   currentTargetPosition: []
   agentPosition: {x: 0, y: 0}
   agentStartPosition: {x: 0, y: 0}
@@ -3587,6 +3589,10 @@ MonoBehaviour:
   basicHexPrefab: {fileID: 4569221856691177203, guid: 9233c44d995c8ff469c29ba4ace08e87, type: 3}
   Agent: {fileID: 6396290701982818648, guid: 80072fa95cc01c046a3e10618c6cf825, type: 3}
   Target: {fileID: 7579221347402826961, guid: 09db29736f5450f4c9b73543246c13b8, type: 3}
+  gridHeight: 0
+  gridWidth: 0
+  rowCounter: 0
+  colCounter: 0
 --- !u!114 &2109844966
 MonoBehaviour:
   m_ObjectHideFlags: 0

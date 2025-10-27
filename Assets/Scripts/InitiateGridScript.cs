@@ -10,17 +10,17 @@ public class InitiateGridScript : MonoBehaviour
     Vector3 gridTransform = new Vector3(0, 0, 0);
 
     //Grid parameters
-    int gridHeight, gridWidth;
+    public int gridHeight, gridWidth;
 
     //Counters for place in grid
-    int rowCounter = 0, colCounter = 0;
+    public int rowCounter = 0, colCounter = 0;
 
-    //Fetches grid stats
+    /*//Fetches grid stats
     private void Awake()
     {
         gridHeight = GetComponent<GameManagerScript>().gridHeight;
         gridWidth = GetComponent<GameManagerScript>().gridWidth;
-    }
+    }*/
 
     private void Start()
     {
@@ -30,7 +30,12 @@ public class InitiateGridScript : MonoBehaviour
     //Creates hexs for grid and calls InstantiateHex to assign variables, assigns adjaceny arrays to each
     public void InstantiateGrid()
     {
-        while(rowCounter < gridHeight)
+        gridHeight = GetComponent<GameManagerScript>().gridHeight;
+        gridWidth = GetComponent<GameManagerScript>().gridWidth;
+        rowCounter = 0;
+        colCounter = 0;
+
+        while (rowCounter < gridHeight)
         {
             //Spawns at 0,0
             InstantiateHex();
@@ -60,8 +65,8 @@ public class InitiateGridScript : MonoBehaviour
             }
 
             rowCounter++;
+            Debug.Log(colCounter + " " + rowCounter);
         }
-        GetComponent<GridManagerScript>().MakeAdjacencyArrays();
     }
 
     //Creates new hex
