@@ -26,11 +26,16 @@ public class GameManagerScript : MonoBehaviour
     public TMP_Text TargetText;
     public TMP_Text AgentText;
 
+    public Slider SideSlider;
+    public TMP_Text SideText;
+
 
     void Awake()
     {
         StepSlider.value = StepTime;
         StepText.text = StepTime.ToString("F2");
+        SideText.text = gridWidth.ToString();
+        SideSlider.value = gridWidth;
     }
 
     private void OnEnable() //Make instance
@@ -84,6 +89,12 @@ public class GameManagerScript : MonoBehaviour
     {
         if (SettingAgent) return;
         SettingTarget = !SettingTarget;
+    }
+    public void UpdateSideSize()
+    {
+        gridWidth = (int)SideSlider.value;
+        gridHeight = (int)SideSlider.value;
+        SideText.text = SideSlider.value.ToString("F0");
     }
     public void Run(GameObject button)
     {
