@@ -212,6 +212,12 @@ public class GridManagerScript : MonoBehaviour
         }
         grid = new GameObject[gridWidth, gridHeight];
         Destroy(agent);
+        foreach(var tar in target)
+        {
+            Destroy(tar);
+        }
+        target.Clear();
+        GameManagerScript.Instance.currentTargetPosition.Clear();
     }
     public void CreateAgent(int x, int y)
     {
