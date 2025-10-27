@@ -2702,7 +2702,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2109844961}
+        m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
+        m_MethodName: SetHierarch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1974188692
 GameObject:
@@ -2965,7 +2977,6 @@ MonoBehaviour:
   StepText: {fileID: 1322005474}
   StepTime: 1
   isRunning: 0
-  phase: 0
   SettingTarget: 0
   SettingAgent: 0
   TargetText: {fileID: 965049457}
@@ -3043,3 +3054,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26404893fe7735544891e432ace18e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTarget: 0

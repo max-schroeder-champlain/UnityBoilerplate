@@ -20,9 +20,6 @@ public class GameManagerScript : MonoBehaviour
     public TMP_Text StepText;
     public float StepTime = 1f;
     public bool isRunning;
-    //Keeps track of which player's turn it is
-    public enum PhaseType { SetUp, Combat, Win }
-    public PhaseType phase = PhaseType.SetUp;
 
     public bool SettingTarget;
     public bool SettingAgent;
@@ -34,21 +31,6 @@ public class GameManagerScript : MonoBehaviour
     {
         StepSlider.value = StepTime;
         StepText.text = StepTime.ToString("F2");
-    }
-
-    //Called to switch who starts new build/attack phase
-    public void ChangePhase(PhaseType newPhase)
-    {
-        phase = newPhase;
-    }
-
-    //Used to check phase in different scripts
-    public bool CheckPhase(PhaseType phaseCheck)
-    {
-        if (phase == phaseCheck)
-            return true;
-
-        return false;
     }
 
     private void OnEnable() //Make instance

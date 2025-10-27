@@ -11,6 +11,7 @@ public class Agent : MonoBehaviour
     Queue<Vector2> frontier;
     Dictionary<Vector2, bool> visited = new Dictionary<Vector2, bool>();
     List<Vector2> frontierSet;
+    public int currentTarget = 0;
     public Coroutine move;
     private void Awake()
     {
@@ -22,13 +23,28 @@ public class Agent : MonoBehaviour
         int testLog = 0;
         path = new List<Vector2>();
         visited = new Dictionary<Vector2, bool>();
-        Vector2 targetPosition = GameManagerScript.Instance.currentTargetPosition[0]; // Find based on weights
+        Vector2 targetPosition = GameManagerScript.Instance.currentTargetPosition[currentTarget]; // Find based on weights
         Vector2 agentPos = GameManagerScript.Instance.agentPosition;
         bool foundTarget = false;
         Vector2 targetNeighbor;
         if (targetPosition == agentPos)
         {
-            Debug.Log("At Target");
+            if (!GameManagerScript.Instance.UseHierachy)
+            {
+                Debug.Log("At Target");
+                return;
+            }
+
+            if (currentTarget >= GameManagerScript.Instance.currentTargetPosition.Count - 1)
+            {
+                Debug.Log("Final target");
+            }
+            else
+            {
+                currentTarget++;
+                Debug.Log("At Target");
+            }
+
             return;
         }
         if (!gridManagerScript.CheckHex((int)targetPosition.x, (int)targetPosition.y))
