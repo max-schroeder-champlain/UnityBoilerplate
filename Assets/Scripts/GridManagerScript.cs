@@ -27,18 +27,28 @@ public class GridManagerScript : MonoBehaviour
     //Sets grid paramaters
     private void Awake()
     {
-        gridHeight = GetComponent<GameManagerScript>().gridHeight;
+        /*gridHeight = GetComponent<GameManagerScript>().gridHeight;
         gridWidth = GetComponent<GameManagerScript>().gridWidth;
 
         xEvenUpLimit = gridHeight - 1;
         yRightLimit = gridWidth - 1;
 
-        grid = new GameObject[gridHeight, gridWidth];
+        grid = new GameObject[gridHeight, gridWidth];*/
+
+        CreateGrid();
     }
 
     private void Start()
     {
         StartCoroutine(DelayedStart());
+    }
+
+    public void CreateGrid()
+    {
+        gridHeight = GetComponent<GameManagerScript>().gridHeight;
+        gridWidth = GetComponent<GameManagerScript>().gridWidth;
+
+        grid = new GameObject[gridHeight, gridWidth];
     }
 
     private IEnumerator DelayedStart()
@@ -47,34 +57,6 @@ public class GridManagerScript : MonoBehaviour
 
         CreateAgent(0, 0);
     }
-
-    /*private Vector2 isHexTargetable()
-    {
-        bool findingHex = true;
-        int x = 0, y = 0;
-        Vector2 newTargetPos = new Vector2();
-
-        while(findingHex)
-        {
-            x = Random.Range(0, gridWidth);
-            y = Random.Range(0, gridHeight);
-            newTargetPos = new Vector2(x, y);
-
-            if (x == 0 && y == 0) { continue; }
-            if (x % 2 == 0 && y >= gridHeight - 1) { continue; }
-            if (target.Count != 0)
-            {
-                for (int i = 0; i < target.Count; i++)
-                {
-                    if (newTargetPos == GameManagerScript.Instance.currentTargetPosition[i]) { continue; }
-                }
-                findingHex = false;
-            }
-            findingHex = false;
-        }
-
-        return newTargetPos;
-    }*/
 
     //Adds hex to grid
     public void AddHex(int xPos, int yPos, GameObject newHex)

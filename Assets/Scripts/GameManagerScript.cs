@@ -10,7 +10,9 @@ public class GameManagerScript : MonoBehaviour
     public GameObject HexPrefab;
     public GameObject camera;
     //Grid parameters
-    public int gridWidth, gridHeight;
+    //public int maxGridWidth = 20, maxGridHeight = 20;
+    public int gridWidth = 20, gridHeight = 20;
+    public int newGridWidth, newGridHeight;
     public List<Vector2> currentTargetPosition;
     public Vector2 agentPosition;
     public Vector2 agentStartPosition;
@@ -63,7 +65,9 @@ public class GameManagerScript : MonoBehaviour
         GridManagerScript gridManager = GetComponent<GridManagerScript>();
         gridManager.Clear(gridWidth, gridHeight);
         Destroy(grid);
-        gameObject.AddComponent<InitiateGridScript>().basicHexPrefab = HexPrefab;;
+        gridWidth = newGridWidth;
+        gridHeight = newGridHeight;
+        gameObject.AddComponent<InitiateGridScript>().basicHexPrefab = HexPrefab;
     }
 
     public void SetReuse()
@@ -92,8 +96,8 @@ public class GameManagerScript : MonoBehaviour
     }
     public void UpdateSideSize()
     {
-        gridWidth = (int)SideSlider.value;
-        gridHeight = (int)SideSlider.value;
+        newGridWidth = (int)SideSlider.value;
+        newGridHeight = (int)SideSlider.value;
         SideText.text = SideSlider.value.ToString("F0");
     }
     public void Run(GameObject button)
